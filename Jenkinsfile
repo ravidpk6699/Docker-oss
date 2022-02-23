@@ -51,24 +51,22 @@ pipeline {
         }*/
         stage('Build Docker Image') {
                 steps{
-                    withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u prashanthdevaraj -p ${dockerHubPwd}"
+                    withCredentials([string(credentialsId: 'docker-password', variable: 'docker-hub-password')]) {
+                    sh "docker login -u ravidharani -p ${docker-hub-password}"
                 }
-                sh "docker build -t prashanthdevaraj/java-docker:${VERSION} ."
-                sh "docker tag prashanthdevaraj/java-docker:${VERSION} prashanthdevaraj/java-docker:latest"
-                sh "docker push prashanthdevaraj/java-docker:${VERSION}"
-                sh "docker push prashanthdevaraj/java-docker:latest" 
+                sh "docker build -t ravidharani/ravidharani-javadocker:${VERSION} ."
+                sh "docker tag ravidharani/ravidharani-javadocker:${VERSION} ravidharani/ravidharani-javadocker:latest"
+                sh "docker push ravidharani/ravidharani-javadocker:${VERSION}"
+                sh "docker push ravidharani/ravidharani-javadocker:latest" 
             }
         }
-        /*stage('Deploy to prod') {
+        stage('Deploy to prod') {
             steps{
                 ansiblePlaybook become: true, becomeUser: 'root', credentialsId: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/deploy.yaml'
             }          
-        }*/
-        stage('Deploy to prod') {
-            steps{
-                ansiblePlaybook become: true, becomeUser: 'root', credentialsId: 'ansible', inventory: 'ansible/hosts', playbook: 'ansible/deploy-kubernetes.yaml'
+        }
+        
             }          
         }
-    }
-}
+    
+
