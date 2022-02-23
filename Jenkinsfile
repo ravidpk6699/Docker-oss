@@ -51,8 +51,8 @@ pipeline {
         }*/
         stage('Build Docker Image') {
                 steps{
-                    withCredentials([string(credentialsId: 'docker-password', variable: 'docker-hub-password')]) {
-                    sh "docker login -u ravidharani -p ${docker-hub-password}"
+                    withCredentials([string(credentialsId: 'docker-password', variable: 'docker_hub_password')]) {
+                    sh "docker login -u ravidharani -p ${docker_hub_password}"
                 }
                 sh "docker build -t ravidharani/ravidharani-javadocker:${VERSION} ."
                 sh "docker tag ravidharani/ravidharani-javadocker:${VERSION} ravidharani/ravidharani-javadocker:latest"
