@@ -5,7 +5,7 @@
     - name: Copy docker-compose.yml to demo server
       copy:
         src: ../docker-compose.yml
-        dest: /home/ravi/
+        dest: /home/azureuser/
     - name: Stop running containers
       shell: docker-compose down
     - name: Pull latest docker image
