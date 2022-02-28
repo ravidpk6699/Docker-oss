@@ -1,5 +1,5 @@
 ---
-- hosts: prod-server
+- hosts: prodserver
   become: true
   tasks:
     - name: Copy docker-compose.yml to demo server
