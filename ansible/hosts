@@ -1,3 +1,3 @@
 [prod-server]
-prod-server1 ansible_ssh_host=40.71.24.211
+prodserver1 ansible_ssh_host=40.71.24.211
 
